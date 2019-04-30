@@ -27,7 +27,7 @@ class LoginContainer extends Component {
       },
     };
   }
-
+  
   handleSubmit = e => {
     e.preventDefault();
     const data = [
@@ -37,10 +37,10 @@ class LoginContainer extends Component {
       },
     ];
     // console.log(this.props);
-    console.log(loginRequest(data));
+    // console.log(data);
     this.props.login(data);
   };
-
+  
   handleChange = e => {
     const { name } = e.target;
     const { data } = this.state;
@@ -49,11 +49,11 @@ class LoginContainer extends Component {
       data,
     });
   };
-
+  
   render() {
     // useInjectReducer({ key: 'loginContainer', reducer });
     // useInjectSaga({ key: 'loginContainer', saga });
-
+    
     return (
       <div>
         <h2>Login Form</h2>

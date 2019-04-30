@@ -5,20 +5,25 @@
  */
 import produce from 'immer';
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
+import { loginRequest, loginSuccess, loginError } from './actions';
+
+console.log("REDUCERS");
 
 export const initialState = {
-  data: [],
   events: [],
+  data: [],
   loading: false,
   error: true,
 };
-
 /* eslint-disable default-case, no-param-reassign */
 const loginContainerReducer = (state = initialState, action) => {
-  console.log('SUCCESS');
   switch (action.type) {
     case LOGIN_REQUEST: {
-      return state.set('loading', true).set('error', false);
+      // console.log("data");kic
+      return state.set('loading', true).set('error', false).set(data= [{
+        'username':action.username,
+        'password':action.password
+      }]);
     }
 
     case LOGIN_SUCCESS:
@@ -32,5 +37,4 @@ const loginContainerReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 export default loginContainerReducer;
