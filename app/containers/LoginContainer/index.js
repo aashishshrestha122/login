@@ -8,9 +8,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { compose } from 'redux';
+import  injectSaga  from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 import makeSelectLoginContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -101,9 +101,20 @@ const mapDispatchToProps = dispatch => ({
   login: data => dispatch(loginRequest(data)),
 });
 
-const withLoginContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginContainer);
+const withReducer = injectReducer({ key: 'home', reducer });
+const withSaga = injectSaga({ key: 'home', saga });
 
-export default withLoginContainer;
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps)
+
+// const withLoginContainer = connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(LoginContainer);
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(LoginContainer);

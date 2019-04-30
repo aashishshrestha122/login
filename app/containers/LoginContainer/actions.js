@@ -12,11 +12,11 @@ export const loginRequest = data => ({
   data,
 });
 // console.log(data);
-export const loginSuccess = events => ({
-  type: LOGIN_SUCCESS,
-  events,
-});
-export const loginError = error => ({
-  type: LOGIN_ERROR,
-  error,
-});
+// export const loginSuccess = events => ({
+//   type: LOGIN_SUCCESS,
+//   events,
+// });
+// export const loginError = error => ({
+//   type: LOGIN_ERROR,
+//   error,
+// });
