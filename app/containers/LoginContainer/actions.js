@@ -5,6 +5,7 @@
  */
 
 console.log('actions');
+// console.log(data);
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
 
 export const loginRequest = data => ({

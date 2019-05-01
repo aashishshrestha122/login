@@ -1,30 +1,25 @@
 import { put, takeLatest, all } from 'redux-saga/effects';
-import * as types from './actions';
+import axios from 'axios';
 
 console.log('sagas');
-function* loginAuth() {
-  const auth = yield fetch('localhost:3005/api/login/')
-    .then(res => res.json())
-    .then(data => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        data,
-      }).catch(error => {
-        dispatch({
-          type: LOGIN_ERROR,
-          error,
-        });
-      });
-    });
-  yield put({ type: 'LOGIN_SUCCESS', json: json.articles });
+// console.log(this.login);
+function* loginAuth(action) {
+  const auth = yield axios({
+    method: 'post',
+    url: 'http://localhost:3005/api/login',
+    data: {
+      username: action.data.username,
+      password: action.data.password,
+    },
+  });
+
+  yield put({ type: 'LOGIN_SUCCESS', json: auth });
 }
 
 function* actionWatcher() {
-  yield takeLatest("LOGIN_REQUEST", loginAuth);
+  yield takeLatest('LOGIN_REQUEST', loginAuth);
 }
 
 export default function* rootSaga() {
   yield all([actionWatcher()]);
 }
-
-// console.log(tae);
