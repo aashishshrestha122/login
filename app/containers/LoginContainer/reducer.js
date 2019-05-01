@@ -22,9 +22,10 @@ const loginContainerReducer = (state = initialState, action) => {
     }
 
     case LOGIN_SUCCESS:
-      console.log(action.json);
-      return { ...state, action, loading: false, error: false };
-      localStorage.setItem('token', res.data.token)
+      console.log(action.json.data);
+      // localStorage.setItem('token', action.json.data.token);
+      return { action, loading: false, error: false };
+      break;
 
     case LOGIN_ERROR:
       return state.set('loading', false).set('error', action.error);
