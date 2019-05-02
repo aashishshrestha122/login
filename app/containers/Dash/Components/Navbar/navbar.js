@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import './navbar.css';
 
 class Navbar extends Component{
     render(){
         return(
-            <div>navbar</div>
+            <div>Navbar
+                <button type= "submit" >Redirect to Navbar</button>
+            </div>
         )
     }
     

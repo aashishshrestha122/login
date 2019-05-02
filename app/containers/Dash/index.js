@@ -18,8 +18,8 @@ import makeSelectDash from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import Navbar from './Components/navbar';
-import Sidebar from './Components/sidebar';
+import Navbar from './Components/Navbar/navbar';
+import Sidebar from './Components/Sidebar/sidebar';
 
 export function Dash() {
   useInjectReducer({ key: 'dash', reducer });
