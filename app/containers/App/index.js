@@ -41,8 +41,8 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/home" component={HomePage} />
-        <Route path="/" component={LoginContainer} />
         <Route path="/dash" component={Dash} />
+        <Route path="/" component={LoginContainer} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />

@@ -15,8 +15,8 @@ function* loginAuth(action) {
   });
 
   yield put({ type: 'LOGIN_SUCCESS', json: auth });
-  //routes to home page if success
-  yield put(push('/home'));
+  // routes to home page if success
+  yield put(push('/dash'));
 }
 
 function* actionWatcher() {

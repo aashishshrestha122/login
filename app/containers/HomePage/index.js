@@ -21,6 +21,7 @@ import {
 } from 'containers/App/selectors';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
+import { Redirect } from 'react-router-dom';
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
@@ -32,7 +33,6 @@ import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import {Redirect} from 'react-router-dom';
 
 const key = 'home';
 

@@ -23,11 +23,7 @@ export function Dash() {
   useInjectReducer({ key: 'dash', reducer });
   useInjectSaga({ key: 'dash', saga });
 
-  return (
-    <div>
-      Dash
-    </div>
-  );
+  return <div>Dash</div>;
 }
 
 Dash.propTypes = {
