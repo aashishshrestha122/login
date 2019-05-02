@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -18,12 +18,17 @@ import makeSelectDash from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import Navbar from './Components/navbar';
+import Sidebar from './Components/sidebar';
 
 export function Dash() {
   useInjectReducer({ key: 'dash', reducer });
   useInjectSaga({ key: 'dash', saga });
 
-  return <div>Dash</div>;
+  return <div>Dash
+    <Navbar />
+    <Sidebar />
+  </div>;
 }
 
 Dash.propTypes = {
