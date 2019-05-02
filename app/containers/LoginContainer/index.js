@@ -72,7 +72,7 @@ class LoginContainer extends Component {
               onChange={this.handleChange}
               value={this.state.data.password}
             />
-            <button type="submit" onSubmit={this.handleSubmit}>
+            <button type="submit">
               Login
             </button>
           </form>

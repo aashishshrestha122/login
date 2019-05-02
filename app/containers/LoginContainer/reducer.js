@@ -23,12 +23,13 @@ const loginContainerReducer = (state = initialState, action) => {
 
     case LOGIN_SUCCESS:
       console.log(action.json.data);
-      // localStorage.setItem('token', action.json.data.token);
+      localStorage.setItem('token', action.json.data.token);
+      // console.log(localStorage);
       return { action, loading: false, error: false };
-      break;
+      
 
-    case LOGIN_ERROR:
-      return state.set('loading', false).set('error', action.error);
+    // case LOGIN_ERROR:
+      // return state.set('loading', false).set('error', action.error);
     default:
       return state;
   }

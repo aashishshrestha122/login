@@ -1,4 +1,5 @@
 import { put, takeLatest, all } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import axios from 'axios';
 
 console.log('sagas');
@@ -14,6 +15,8 @@ function* loginAuth(action) {
   });
 
   yield put({ type: 'LOGIN_SUCCESS', json: auth });
+  //routes to home page if success
+  yield put(push('/home'));
 }
 
 function* actionWatcher() {
