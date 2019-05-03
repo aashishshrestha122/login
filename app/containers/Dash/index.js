@@ -25,10 +25,12 @@ export function Dash() {
   useInjectReducer({ key: 'dash', reducer });
   useInjectSaga({ key: 'dash', saga });
 
-  return <div>Dash
-    <Navbar />
-    <Sidebar />
-  </div>;
+  return (
+    <div>
+      <Navbar />
+      <Sidebar />
+    </div>
+  );
 }
 
 Dash.propTypes = {

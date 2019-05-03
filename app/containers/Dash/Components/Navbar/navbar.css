@@ -14,10 +14,10 @@ ul {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 50px;
     text-decoration: none;
   }
-  
+
   li a:hover:not(.active) {
     background-color: #111;
   }
