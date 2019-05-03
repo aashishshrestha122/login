@@ -16,6 +16,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { LOGIN_REQUEST } from './constants';
 import { loginRequest } from './actions';
+import './index.css';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -65,6 +66,8 @@ class LoginContainer extends Component {
               onChange={this.handleChange}
               value={this.state.data.username}
             />
+            <br />
+            <br />
             <label>Password</label>
             <input
               type="password"
@@ -72,6 +75,7 @@ class LoginContainer extends Component {
               onChange={this.handleChange}
               value={this.state.data.password}
             />
+            <br />
             <button type="submit">Login</button>
           </form>
         </div>
