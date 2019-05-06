@@ -75,7 +75,7 @@ class LoginContainer extends Component {
               <Header as="h2" color="teal" textAlign="center">
                 Login Page
               </Header>
-              <Form size="large">
+              <Form size="large" onSubmit={this.handleSubmit}>
                 <Segment stacked>
                   <Form.Input
                     fluid
@@ -97,12 +97,7 @@ class LoginContainer extends Component {
                     onChange={this.handleChange}
                     value={this.state.data.password}
                   />
-                  <Button
-                    color="teal"
-                    fluid
-                    size="large"
-                    onSubmit={this.handleSubmit}
-                  >
+                  <Button color="teal" fluid size="large">
                     Login
                   </Button>
                 </Segment>
