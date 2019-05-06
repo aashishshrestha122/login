@@ -18,7 +18,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import LoginContainer from 'containers/LoginContainer/Loadable';
 import Dash from 'containers/Dash/';
-import Testimonial from 'containers/Testimonial'
+import Testimonial from 'containers/Dash/Components/Testimonial'
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`

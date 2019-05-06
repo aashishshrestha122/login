@@ -22,7 +22,7 @@ class Navbar extends Component {
               <a>Home</a>
             </li>
             <li className="item">
-              <a>News</a>
+              <a>Testimonial</a>
             </li>
             <li className="item">
               <a>About</a>
