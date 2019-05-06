@@ -16,7 +16,16 @@ import reducer from './reducer';
 import saga from './saga';
 import { LOGIN_REQUEST } from './constants';
 import { loginRequest } from './actions';
-import './index.css';
+// import './index.css';
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment,
+} from 'semantic-ui-react';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -56,28 +65,50 @@ class LoginContainer extends Component {
 
     return (
       <div>
-        <h2>Login Form</h2>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              onChange={this.handleChange}
-              value={this.state.data.username}
-            />
-            <br />
-            <br />
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.data.password}
-            />
-            <br />
-            <button type="submit">Login</button>
-          </form>
+        <div className="login-form">
+          <Grid
+            textAlign="center"
+            style={{ height: '100%' }}
+            verticalAlign="middle"
+          >
+            <Grid.Column style={{ maxWidth: 450 }}>
+              <Header as="h2" color="teal" textAlign="center">
+                Login Page
+              </Header>
+              <Form size="large">
+                <Segment stacked>
+                  <Form.Input
+                    fluid
+                    icon="user"
+                    iconPosition="left"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    onChange={this.handleChange}
+                    value={this.state.data.username}
+                  />
+                  <Form.Input
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    onChange={this.handleChange}
+                    value={this.state.data.password}
+                  />
+                  <Button
+                    color="teal"
+                    fluid
+                    size="large"
+                    onSubmit={this.handleSubmit}
+                  >
+                    Login
+                  </Button>
+                </Segment>
+              </Form>
+            </Grid.Column>
+          </Grid>
         </div>
       </div>
     );
