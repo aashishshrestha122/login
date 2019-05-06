@@ -4,10 +4,11 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+console.log('post actions');
+// console.log(data);
+import { POST_REQUEST } from './constants';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const postRequest = data => ({
+  type: POST_REQUEST,
+  data,
+});

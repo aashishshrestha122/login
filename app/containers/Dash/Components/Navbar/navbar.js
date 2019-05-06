@@ -10,7 +10,12 @@ class Navbar extends Component {
     localStorage.removeItem('token');
     history.push('/');
   }
-
+  testimonial = () => {
+    history.push('/testimonial');
+  }
+  home  = () => {
+    history.push('/dash');
+  }
   render() {
     const decoded = jwt(localStorage.getItem('token'));
     // console.log(decoded.user.username);
@@ -19,10 +24,10 @@ class Navbar extends Component {
         <div className="ui inverted secondary menu">
           <ul>
             <li className="active item">
-              <a>Home</a>
+              <a onClick = {this.home}>Home</a>
             </li>
             <li className="item">
-              <a>Testimonial</a>
+              <a onClick = {this.testimonial}>Testimonial</a>
             </li>
             <li className="item">
               <a>About</a>

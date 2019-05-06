@@ -7,17 +7,15 @@
 import React, { memo, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 import makeSelectTestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
+import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
+import {postRequest} from './actions';
 import * as jwt from 'jwt-decode';
 import {
   Button,
@@ -28,7 +26,7 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-import { tsConstructorType } from '@babel/types';
+
 
 class Testimonial extends Component {
   // useInjectReducer({ key: 'testimonial', reducer });
@@ -41,14 +39,34 @@ class Testimonial extends Component {
         personName: '',
         testimonialContent: '',
         organization: '',
-        designation: '',
-        email: '',
+        message: '',
       },
     };
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const data = {
+      personName: this.state.data.personName,
+      testimonialContent: this.state.data.testimonialContent,
+      organization: this.state.data.organization,
+      message: this.state.data.message,
+    };
+    console.log(data);
+    this.props.submit(data);
+  };
+
+  handleChange = e => {
+    const { name } = e.target;
+    const { data } = this.state;
+    data[name] = e.target.value;
+    this.setState({
+      data,
+    });
+  };
   render() {
     const decoded = jwt(localStorage.getItem('token'));
-    console.log(decoded.user.username);
+    // console.log(decoded.user.username);
 
     return (
       <div>
@@ -70,6 +88,8 @@ class Testimonial extends Component {
                     type="text"
                     name="personName"
                     placeholder="Name"
+                    onChange={this.handleChange}
+                    value={this.state.data.personName}
                   />
                   <Form.Input
                     fluid
@@ -77,6 +97,8 @@ class Testimonial extends Component {
                     placeholder="Testimonial Content"
                     type="text"
                     name="testimonialContent"
+                    onChange={this.handleChange}
+                    value={this.state.data.testimonialContent}
                   />
                   <Form.Input
                     fluid
@@ -84,21 +106,24 @@ class Testimonial extends Component {
                     placeholder="Organization"
                     type="text"
                     name="organization"
+                    onChange={this.handleChange}
+                    value={this.state.data.organization}
                   />
                   <Form.Input
                     fluid
-                    placeholder="Designation"
+                    placeholder="Message"
                     type="text"
-                    name="designation"
+                    name="message"
+                    onChange={this.handleChange}
+                    value={this.state.data.message}
                   />
-                  <Form.Input
+                  <Button
+                    color="teal"
                     fluid
-                    placeholder="Email"
-                    type="email"
-                    name="email"
-                  />
-                  <Button color="teal" fluid size="large">
-                    Login
+                    size="large"
+                    onSubmit={this.handleSubmit}
+                  >
+                    Post
                   </Button>
                 </Segment>
               </Form>
@@ -109,19 +134,20 @@ class Testimonial extends Component {
     );
   }
 }
-Testimonial.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+// Testimonial.propTypes = {
+//   dispatch: PropTypes.func.isRequired,
+// };
 
 const mapStateToProps = createStructuredSelector({
   testimonial: makeSelectTestimonial(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+const withReducer = injectReducer({ key: 'Testimonial', reducer });
+const withSaga = injectSaga({ key: 'Testimonial', saga });
+
+const mapDispatchToProps = dispatch => ({
+  submit: data => dispatch(postRequest(data)),
+});
 
 const withConnect = connect(
   mapStateToProps,
@@ -130,5 +156,6 @@ const withConnect = connect(
 
 export default compose(
   withConnect,
-  memo,
+  withReducer,
+  withSaga,
 )(Testimonial);

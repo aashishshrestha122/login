@@ -31,8 +31,10 @@ const loginContainerReducer = (state = initialState, action) => {
       // console.log(localStorage);
       return { action, loading: false, error: false };
 
-    // case LOGIN_ERROR:
-    // return state.set('loading', false).set('error', action.error);
+    case LOGIN_ERROR:{
+      // console.log("error");
+      return { ...state, loading: false, error: true};
+    }
     default:
       return state;
   }
