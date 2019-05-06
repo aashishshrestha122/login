@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 // import history from './history';
 import './navbar.css';
+import * as jwt from "jwt=decode";
 
 class Navbar extends Component {
+  
   logout() {
     localStorage.removeItem('token');
     history.pushState('/');
   }
+
+ 
   render() {
+    const decoded = jwt(localStorage.getItem("token"));
+    console.log(decoded.user.username);
     return (
       <div className="ui inverted segment">
         <div className="ui inverted secondary menu">

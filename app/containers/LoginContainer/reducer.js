@@ -5,6 +5,7 @@
  */
 import produce from 'immer';
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
+import * as jwt from "jwt=decode";
 console.log('REDUCERS');
 
 export const initialState = {
@@ -24,6 +25,9 @@ const loginContainerReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       console.log(action.json.data);
       localStorage.setItem('token', action.json.data.token);
+      const decoded = jwt(localStorage.getItem("token"));
+      console.log(decoded);
+
       // console.log(localStorage);
       return { action, loading: false, error: false };
 
