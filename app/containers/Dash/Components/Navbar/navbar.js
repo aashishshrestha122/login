@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 // import history from './history';
 import './navbar.css';
-import * as jwt from "jwt-decode";
+import * as jwt from 'jwt-decode';
+import { Redirect } from 'react-router-dom'
+
+
 class Navbar extends Component {
-  
   logout() {
     localStorage.removeItem('token');
-    history.pushState('/');
+    return <Redirect to='/' />
+    // history.pushState('/home');
   }
 
- 
   render() {
-    const decoded = jwt(localStorage.getItem("token"));
-    console.log(decoded.user.username);
+    const decoded = jwt(localStorage.getItem('token'));
+    // console.log(decoded.user.username);
     return (
       <div className="ui inverted segment">
         <div className="ui inverted secondary menu">
@@ -20,7 +22,7 @@ class Navbar extends Component {
             <li className="active item">
               <a>Home</a>
             </li>
-            <li className = "item">
+            <li className="item">
               <a>News</a>
             </li>
             <li className="item">
@@ -33,7 +35,10 @@ class Navbar extends Component {
               <a onClick={this.logout}>Logout</a>
             </li>
             <li className="item">
-            <a >{decoded.user.username}</a>
+              <a> </a>
+            </li>
+            <li className="item last">
+              <a>{decoded.user.username}</a>
             </li>
           </ul>
         </div>

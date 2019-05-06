@@ -17,7 +17,8 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import LoginContainer from 'containers/LoginContainer/Loadable';
-import Dash from 'containers/Dash/Loadable';
+import Dash from 'containers/Dash/';
+import Testimonial from 'containers/Testimonial'
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
@@ -42,6 +43,7 @@ export default function App() {
       <Switch>
         <Route exact path="/home" component={HomePage} />
         <Route path="/dash" component={Dash} />
+        <Route path = "/testimonial" component={Testimonial} />
         <Route path="/" component={LoginContainer} />
         <Route path="" component={NotFoundPage} />
       </Switch>
