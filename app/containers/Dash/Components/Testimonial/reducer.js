@@ -3,18 +3,25 @@
  * Testimonial reducer
  *
  */
-import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
 
-export const initialState = {};
+export const initialState = {
+  data: [],
+};
 
-/* eslint-disable default-case, no-param-reassign */
-const testimonialReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
-    switch (action.type) {
-      case DEFAULT_ACTION:
-        break;
+const postContainerReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case POST_REQUEST: {
+      return { ...state };
     }
-  });
-
-export default testimonialReducer;
+    case POST_SUCCESS: {
+      return { action };
+    }
+    case POST_ERROR: {
+      return {...state}
+    }
+    default:
+    return state;
+  }
+};
+export default postContainerReducer;

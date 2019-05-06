@@ -52,7 +52,7 @@ class Testimonial extends Component {
       organization: this.state.data.organization,
       message: this.state.data.message,
     };
-    console.log(data);
+    // console.log(data);
     this.props.submit(data);
   };
 
