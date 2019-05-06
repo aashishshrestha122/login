@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 // import history from './history';
 import './navbar.css';
-import * as jwt from "jwt=decode";
-
+import * as jwt from "jwt-decode";
 class Navbar extends Component {
   
   logout() {
@@ -34,7 +33,7 @@ class Navbar extends Component {
               <a onClick={this.logout}>Logout</a>
             </li>
             <li className="item">
-            <a ></a>
+            <a >{decoded.user.username}</a>
             </li>
           </ul>
         </div>

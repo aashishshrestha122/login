@@ -7,7 +7,7 @@ console.log('sagas');
 function* loginAuth(action) {
   const auth = yield axios({
     method: 'post',
-    url: 'http://localhost:3005/api/login',
+    url: 'http://192.168.10.19:3005/api/login',
     data: {
       username: action.data.username,
       password: action.data.password,
