@@ -8,21 +8,18 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-
-import { Redirect } from 'react-router-dom'
+import history from '../../../../utils/history';
+import { Redirect, Switch } from 'react-router-dom';
 
 class Sidebar extends Component {
-    handlePageChange= () => {
-        <Redirect to='/testimonial' />
-    }
+  handlePageChange = () => {
+    history.push('/testimonial');
+  };
   render() {
     return (
       <div>
-        <Button
-          color ="blue"
-          className="px-4"
-          onClick={this.handlePageChange}
-        >
+        <Button color="blue" className="px-4" onClick={this.handlePageChange}>
+        {/* <Link to="/" /> */}
           Add Testimonial
         </Button>
       </div>

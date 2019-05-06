@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 // import history from './history';
 import './navbar.css';
 import * as jwt from 'jwt-decode';
-import { Redirect } from 'react-router-dom'
-
+import { Redirect } from 'react-router-dom';
+import history from '../../../../utils/history';
 
 class Navbar extends Component {
   logout() {
     localStorage.removeItem('token');
-    return <Redirect to='/' />
-    // history.pushState('/home');
+    history.push('/');
   }
 
   render() {
