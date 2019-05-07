@@ -19,7 +19,9 @@ import Footer from 'components/Footer';
 import LoginContainer from 'containers/LoginContainer/Loadable';
 import Dash from 'containers/Dash/';
 import Testimonial from 'containers/Dash/Components/Testimonial';
+import Gettestimonial from 'containers/Dash/Components/Gettestimonial';
 import GlobalStyle from '../../global-styles';
+
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -50,6 +52,10 @@ export default function App() {
         <Route
           path="/testimonial"
           render={() => (token ? <Testimonial /> : <Redirect to="/" />)}
+        />
+        <Route
+          path="/listtestimonials"
+          render={() => (token ? <Gettestimonial /> : <Redirect to="/" />)}
         />
         <Route path="/" component={LoginContainer} />
         <Route path="" component={NotFoundPage} />

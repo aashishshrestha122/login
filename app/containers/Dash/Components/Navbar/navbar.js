@@ -26,9 +26,9 @@ class Navbar extends Component {
             <li className="active item">
               <a onClick = {this.home}>Home</a>
             </li>
-            <li className="item">
+            {/* <li className="item">
               <a onClick = {this.testimonial}>Testimonial</a>
-            </li>
+            </li> */}
             <li className="item">
               <a>About</a>
             </li>

@@ -17,6 +17,7 @@ import saga from './saga';
 import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
 import { postRequest } from './actions';
 import * as jwt from 'jwt-decode';
+import Navbar from '../Navbar/navbar';
 import {
   Button,
   Form,
@@ -55,6 +56,7 @@ class Testimonial extends Component {
     };
 
     this.props.submit(data, this.state.file);
+    // console.log(data, this.state.file);
   };
 
   handleChange = e => {
@@ -67,7 +69,7 @@ class Testimonial extends Component {
   };
 
   handleFileChange = e => {
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     this.setState({
       ...this.state,
       file: e.target.files[0],
@@ -75,11 +77,12 @@ class Testimonial extends Component {
   };
 
   render() {
-    const decoded = jwt(localStorage.getItem('token'));
-    console.log(this.state);
+    // const decoded = jwt(localStorage.getItem('token'));
+    // console.log(this.state);
 
     return (
       <div>
+        <Navbar />
         <div className="login-form">
           <Grid
             textAlign="center"

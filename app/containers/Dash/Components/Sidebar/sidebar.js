@@ -11,16 +11,28 @@ import {
 import history from '../../../../utils/history';
 import { Redirect, Switch } from 'react-router-dom';
 
+
 class Sidebar extends Component {
   handlePageChange = () => {
     history.push('/testimonial');
+  };
+  handlePageChangeGet = () => {
+    history.push('/listtestimonials');
   };
   render() {
     return (
       <div>
         <Button color="blue" className="px-4" onClick={this.handlePageChange}>
-        {/* <Link to="/" /> */}
           Add Testimonial
+        </Button>
+        <br />
+        <br />
+        <Button
+          color="green"
+          className="px-4"
+          onClick={this.handlePageChangeGet}
+        >
+          List Testimonials
         </Button>
       </div>
     );
