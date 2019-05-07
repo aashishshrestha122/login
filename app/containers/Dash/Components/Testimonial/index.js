@@ -15,7 +15,7 @@ import makeSelectTestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
-import {postRequest} from './actions';
+import { postRequest } from './actions';
 import * as jwt from 'jwt-decode';
 import {
   Button,
@@ -26,7 +26,6 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-
 
 class Testimonial extends Component {
   // useInjectReducer({ key: 'testimonial', reducer });
@@ -41,19 +40,21 @@ class Testimonial extends Component {
         organization: '',
         message: '',
       },
+      file: null,
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
+    const formdata = new FormData();
     const data = {
       personName: this.state.data.personName,
       testimonialContent: this.state.data.testimonialContent,
       organization: this.state.data.organization,
       message: this.state.data.message,
     };
-    // console.log(data);
-    this.props.submit(data);
+
+    this.props.submit(data, this.state.file);
   };
 
   handleChange = e => {
@@ -64,9 +65,18 @@ class Testimonial extends Component {
       data,
     });
   };
+
+  handleFileChange = e => {
+    console.log(e.target.files[0]);
+    this.setState({
+      ...this.state,
+      file: e.target.files[0],
+    });
+  };
+
   render() {
     const decoded = jwt(localStorage.getItem('token'));
-    // console.log(decoded.user.username);
+    console.log(this.state);
 
     return (
       <div>
@@ -117,6 +127,13 @@ class Testimonial extends Component {
                     onChange={this.handleChange}
                     value={this.state.data.message}
                   />
+                  <Form.Input
+                    fluid
+                    placeholder="file"
+                    type="file"
+                    name="file"
+                    onChange={this.handleFileChange}
+                  />
                   <Button
                     color="teal"
                     fluid
@@ -146,7 +163,7 @@ const withReducer = injectReducer({ key: 'Testimonial', reducer });
 const withSaga = injectSaga({ key: 'Testimonial', saga });
 
 const mapDispatchToProps = dispatch => ({
-  submit: data => dispatch(postRequest(data)),
+  submit: (data, file) => dispatch(postRequest(data, file)),
 });
 
 const withConnect = connect(

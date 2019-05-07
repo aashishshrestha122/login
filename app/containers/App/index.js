@@ -9,7 +9,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -18,7 +18,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import LoginContainer from 'containers/LoginContainer/Loadable';
 import Dash from 'containers/Dash/';
-import Testimonial from 'containers/Dash/Components/Testimonial'
+import Testimonial from 'containers/Dash/Components/Testimonial';
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
@@ -31,6 +31,7 @@ const AppWrapper = styled.div`
 `;
 
 export default function App() {
+  const token = localStorage.getItem('token');
   return (
     <AppWrapper>
       <Helmet
@@ -42,8 +43,14 @@ export default function App() {
       {/* <Header /> */}
       <Switch>
         <Route exact path="/home" component={HomePage} />
-        <Route path="/dash" component={Dash} />
-        <Route path = "/testimonial" component={Testimonial} />
+        <Route
+          path="/dash"
+          render={() => (token ? <Dash /> : <Redirect to="/" />)}
+        />
+        <Route
+          path="/testimonial"
+          render={() => (token ? <Testimonial /> : <Redirect to="/" />)}
+        />
         <Route path="/" component={LoginContainer} />
         <Route path="" component={NotFoundPage} />
       </Switch>
