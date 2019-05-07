@@ -16,8 +16,8 @@ const gettestimonialReducer = (state = initialState, action) => {
     }
     case GET_SUCCESS: {
       // console.log(action);  
-      return { response : action.json.data.datalist };
-      
+      // console.log(action.json.data.dataList);
+      return { response : action.json.data.dataList };
     }
     case GET_ERROR: {
       return { ...state };
