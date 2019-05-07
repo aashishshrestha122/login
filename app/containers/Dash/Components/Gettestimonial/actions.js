@@ -4,10 +4,10 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+console.log('get actions');
+// console.log(data);
+import { GET_REQUEST } from './constants';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const getRequest = () => ({
+  type: GET_REQUEST,
+});

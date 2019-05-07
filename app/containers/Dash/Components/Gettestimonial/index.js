@@ -16,17 +16,33 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectGettestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { getRequest } from './actions';
 
 import Navbar from '../Navbar/navbar';
 
 class Gettestimonial extends Component {
   // useInjectReducer({ key: 'gettestimonial', reducer });
   // useInjectSaga({ key: 'gettestimonial', saga });
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFetchingData: false,
+      data: null,
+    };
+  }
+  componentDidMount() {
+    this.props.dataRequest();
+  }
   render() {
     return (
       <div>
         <Navbar />
         <div>List Testimonials</div>
+        <div className="container">
+          <div className="align">
+            <div className="element" />
+          </div>
+        </div>
       </div>
     );
   }
@@ -43,11 +59,9 @@ const mapStateToProps = createStructuredSelector({
   gettestimonial: makeSelectGettestimonial(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  dataRequest: data => dispatch(getRequest()),
+});
 
 const withConnect = connect(
   mapStateToProps,

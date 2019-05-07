@@ -6,9 +6,9 @@ console.log('post sagas');
 function* Req(action) {
   try {
     // console.log(action.data);
-    let form_Data = new FormData;
-    form_Data.append("imageName",action.file);
-    form_Data.append("data",action.data);
+    let form_Data = new FormData();
+    form_Data.append('imageName', action.file);
+    form_Data.append('data', action.data);
     // console.log(">>>>>>>",form_Data)
     const content = yield axios({
       method: 'post',
@@ -17,13 +17,13 @@ function* Req(action) {
         // 'Content-Type': 'multipart/form-data',
         Authorization: localStorage.getItem('token'),
       },
-      data: {form_Data}
+      data: { form_Data },
     });
 
     yield put({ type: 'POST_SUCCESS', json: content });
     console.log(json);
   } catch (error) {
-    console.log(error, "error");
+    console.log(error, 'error');
     // alert('Failed To Post Testimonial');
   }
 }
