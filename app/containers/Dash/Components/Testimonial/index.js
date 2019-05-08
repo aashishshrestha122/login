@@ -15,20 +15,12 @@ import makeSelectTestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
-import { postRequest,getDataByIdRequest } from './actions';
+import { postRequest, getDataByIdRequest, putRequest } from './actions';
 import * as jwt from 'jwt-decode';
 import Navbar from '../Navbar/navbar';
 import history from '../../../../utils/history';
 
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-} from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 
 class Testimonial extends Component {
   // useInjectReducer({ key: 'testimonial', reducer });
@@ -48,11 +40,30 @@ class Testimonial extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.match && this.props.match.params.test_id ? this.props.match.params.test_id : '';
-    console.log(this.props);
-    console.log(id,">>>")
-    this.props.dataRequest(id);
+    const id =
+      this.props.match && this.props.match.params.test_id
+        ? this.props.match.params.test_id
+        : null;
+    // console.log(this.props);
+    console.log(id, '>>>');
+    // console.log("didmount");
+    if (id) this.props.dataRequest(id);
     // this.bindData()
+  }
+
+  componentWillReceiveProps(data) {
+    console.log(data);
+    console.log('editindex');
+    // console.log(response);
+    this.setState({
+      data: {
+        ...this.state.data,
+        ...data.Testimonial.testimonialByIdData,
+      },
+    });
+    //     () => console.log(this.state.data),
+    //   );
+    //   // console.log(response, "response");
   }
 
   // bindData = () => {
@@ -61,9 +72,8 @@ class Testimonial extends Component {
   //   this.setState({data:{
   //     newData
   //   }})
-    
-  // }
 
+  // }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -74,8 +84,12 @@ class Testimonial extends Component {
       organization: this.state.data.organization,
       message: this.state.data.message,
     };
-
-    this.props.submit(data, this.state.file);
+    const id =
+      this.props.match && this.props.match.params.test_id
+        ? this.props.match.params.test_id
+        : null;
+    if (id) this.props.putRequest(data, this.state.file, id);
+    else this.props.submit(data, this.state.file);
     // console.log(data, this.state.file);
     history.push('/dash');
   };
@@ -98,9 +112,8 @@ class Testimonial extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
-    
     return (
       <div>
         <Navbar />
@@ -179,7 +192,7 @@ class Testimonial extends Component {
 // };
 
 const mapStateToProps = createStructuredSelector({
-  testimonial: makeSelectTestimonial(),
+  Testimonial: makeSelectTestimonial(),
 });
 
 // function mapStateToProps(action) {
@@ -191,6 +204,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   submit: (data, file) => dispatch(postRequest(data, file)),
   dataRequest: id => dispatch(getDataByIdRequest(id)),
+  putRequest: (data, file, id) => dispatch(putRequest(data, file, id)),
 });
 const withReducer = injectReducer({ key: 'Testimonial', reducer });
 const withSaga = injectSaga({ key: 'Testimonial', saga });

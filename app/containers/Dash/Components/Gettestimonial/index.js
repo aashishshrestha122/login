@@ -45,7 +45,7 @@ class Gettestimonial extends Component {
         // () => console.log(this.state.data ),
       );
       // console.log(this.state.data);
-      // console.log(data, 'data');
+      console.log(data, 'data');
       // console.log(data.gettestimonial.response[0], 'index recieved');
       // console.log(data.gettestimonial.response[0]._id);
     }

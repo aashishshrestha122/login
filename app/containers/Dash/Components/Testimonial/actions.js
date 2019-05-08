@@ -19,4 +19,5 @@ import * as types from './constants';
 export const postRequest = action (types.POST_REQUEST,'data','file')
 export const getDataByIdRequest = action (types.GET_DATA_BY_ID_REQUEST,'id')
 export const getDataByIdSuccess = action (types.GET_DATA_BY_ID_SUCCESS,'id')
-export const getDataByIdFailure = action (types.GET_DATA_BY_ID_FAILURE,'id')
+export const getDataByIdFailure = action(types.GET_DATA_BY_ID_FAILURE, 'id')
+export const putRequest = action(types.PUT_REQUEST, 'data', 'file', 'id')

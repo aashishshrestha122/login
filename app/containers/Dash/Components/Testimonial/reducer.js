@@ -10,11 +10,14 @@ import {
   GET_DATA_BY_ID_REQUEST,
   GET_DATA_BY_ID_SUCCESS,
   GET_DATA_BY_ID_FAILURE,
+  PUT_REQUEST,
+  PUT_SUCCESS,
+  PUT_ERROR,
 } from './constants';
 
 export const initialState = {
   data: [],
-  testimonialByIdData: {}
+  testimonialByIdData: {},
 };
 
 const postContainerReducer = (state = initialState, action) => {
@@ -29,12 +32,23 @@ const postContainerReducer = (state = initialState, action) => {
       return { ...state };
     }
     case GET_DATA_BY_ID_REQUEST: {
-      return { ...state };
+      return { state };
     }
     case GET_DATA_BY_ID_SUCCESS: {
-      return {  action };
+      console.log(action.res.data);
+      // console.log(action);
+      return { testimonialByIdData: action.res.data };
     }
     case GET_DATA_BY_ID_FAILURE: {
+      return { ...state };
+    }
+    case PUT_REQUEST: {
+      return { ...state };
+    }
+    case PUT_SUCCESS: {
+      return { action };
+    }
+    case PUT_ERROR: {
       return { ...state };
     }
     default:

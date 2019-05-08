@@ -5,7 +5,7 @@ import { initialState } from './reducer';
  * Direct selector to the testimonial state domain
  */
 
-const selectTestimonialDomain = state => state.testimonial || initialState;
+const selectTestimonialDomain = state => state.Testimonial || initialState;
 
 /**
  * Other specific selectors

@@ -8,7 +8,7 @@ function* Req() {
   try {
     const content = yield  axios({
       method: 'get',
-      url: 'http://192.168.31.26:3005/api/testimonial/',
+      url: 'http://localhost:3005/api/testimonial/',
       headers: {
         Authorization: localStorage.getItem('token'),
       },
@@ -22,7 +22,7 @@ function* Req() {
   }
 }
 function* actionWatcher() {
-  yield takeLatest(types.GET_REQUESTf, Req);
+  yield takeLatest(types.GET_REQUEST, Req);
 }
 
 export default function* rootSaga() {
