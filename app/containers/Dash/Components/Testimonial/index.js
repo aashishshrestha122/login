@@ -18,6 +18,8 @@ import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
 import { postRequest } from './actions';
 import * as jwt from 'jwt-decode';
 import Navbar from '../Navbar/navbar';
+import history from '../../../../utils/history';
+
 import {
   Button,
   Form,
@@ -57,6 +59,7 @@ class Testimonial extends Component {
 
     this.props.submit(data, this.state.file);
     // console.log(data, this.state.file);
+    history.push('/dash');
   };
 
   handleChange = e => {

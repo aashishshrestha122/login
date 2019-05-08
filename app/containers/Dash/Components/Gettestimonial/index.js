@@ -50,8 +50,8 @@ class Gettestimonial extends Component {
       // console.log(data.gettestimonial.response[0]._id);
     }
   }
-  
-  onEditChange() {
+
+  onEditChange(e) {
     // e.preventDefault();
     // console.log()
     history.push('/edittestimonials');
@@ -66,35 +66,36 @@ class Gettestimonial extends Component {
           this.state.data.gettestimonial.response.map((element, index) => (
             <div key={index}>
               <br />
-
-              <Card>
-                <ul>
-                  <li>
-                    <Button
-                      color="blue"
-                      className="px-4"
-                      className="button"
-                      onClick={this.onEditChange}
-                    >
-                      Edit
-                    </Button>
-                  </li>
-                  <li>
-                    <Button color="red" className="px-4">
-                      Delete
-                    </Button>
-                  </li>
-                </ul>
-                <Card.Content header={element.personName} />
-                <Card.Content
-                  meta="Testimonial"
-                  description={element.testimonialContent}
-                />
-                <Card.Content
-                  meta="Organization"
-                  description={element.organization}
-                />
-              </Card>
+              <div className = "card">
+                <Card>
+                  <ul>
+                    <li>
+                      <Button
+                        color="blue"
+                        className="px-4"
+                        className="button"
+                        onClick={this.onEditChange}
+                      >
+                        Edit
+                      </Button>
+                    </li>
+                    <li>
+                      <Button color="red" className="px-4">
+                        Delete
+                      </Button>
+                    </li>
+                  </ul>
+                  <Card.Content header={element.personName} />
+                  <Card.Content
+                    meta="Testimonial"
+                    description={element.testimonialContent}
+                  />
+                  <Card.Content
+                    meta="Organization"
+                    description={element.organization}
+                  />
+                </Card>
+              </div>
             </div>
           ))}
       </div>
