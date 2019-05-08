@@ -17,8 +17,10 @@ import makeSelectGettestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { getRequest } from './actions';
-
+import { Card, Button } from 'semantic-ui-react';
 import Navbar from '../Navbar/navbar';
+import './index.css';
+import history from '../../../../utils/history';
 
 class Gettestimonial extends Component {
   // useInjectReducer({ key: 'gettestimonial', reducer });
@@ -40,12 +42,16 @@ class Gettestimonial extends Component {
         {
           data,
         },
-        () => console.log(this.state.data, 'bhitrako'),
+        // () => console.log(this.state.data ),
       );
-      console.log(this.state.data, 'bairako');
+      // console.log(this.state.data);
       // console.log(data, 'data');
       // console.log(data.gettestimonial.response[0], 'index recieved');
     }
+  }
+
+  onEditChange(){
+    history.push('/edittestimonials');
   }
 
   render() {
@@ -53,23 +59,41 @@ class Gettestimonial extends Component {
       <div>
         <Navbar />
         <div>List Testimonials</div>
-        <div className="container">
-          <h1 />
-          <div className="align">
-            {console.log(this.state.data, 'bhitra bhitra')}
-            <div className="element" />
-            {this.state.data &&
-              this.state.data.gettestimonial.response.map((element, index) => (
-                <div key={index}>
-                  <br />
-                  <div>{element.personName}</div>
-                  <br />
-                  <div>{element.testimonialContent}</div><br />
-                  <div>{element.organization}</div>
-                </div>
-              ))}
-          </div>
-        </div>
+
+        {this.state.data &&
+          this.state.data.gettestimonial.response.map((element, index) => (
+            <div key={index}>
+              <br />
+              <Card>
+                <ul>
+                  <li>
+                    <Button
+                      color="blue"
+                      className="px-4"
+                      className="button"
+                      onClick={this.onEditChange}
+                    >
+                      Edit
+                    </Button>
+                  </li>
+                  <li>
+                    <Button color="red" className="px-4">
+                      Delete
+                    </Button>
+                  </li>
+                </ul>
+                <Card.Content header={element.personName} />
+                <Card.Content
+                  meta="Testimonial"
+                  description={element.testimonialContent}
+                />
+                <Card.Content
+                  meta="Organization"
+                  description={element.organization}
+                />
+              </Card>
+            </div>
+          ))}
       </div>
     );
   }

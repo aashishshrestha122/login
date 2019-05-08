@@ -20,6 +20,7 @@ import LoginContainer from 'containers/LoginContainer/Loadable';
 import Dash from 'containers/Dash/';
 import Testimonial from 'containers/Dash/Components/Testimonial';
 import Gettestimonial from 'containers/Dash/Components/Gettestimonial';
+import EditTestimonial from 'containers/Dash/Components/EditTestimonial';
 import GlobalStyle from '../../global-styles';
 
 
@@ -56,6 +57,10 @@ export default function App() {
         <Route
           path="/listtestimonials"
           render={() => (token ? <Gettestimonial /> : <Redirect to="/" />)}
+        />
+        <Route
+          path="/edittestimonials"
+          render={() => (token ? <EditTestimonial /> : <Redirect to="/" />)}
         />
         <Route path="/" component={LoginContainer} />
         <Route path="" component={NotFoundPage} />

@@ -7,7 +7,7 @@ function* Req() {
   try {
     const content = yield  axios({
       method: 'get',
-      url: 'http://localhost:3005/api/testimonial/',
+      url: 'http://192.168.10.2:3005/api/testimonial/',
       headers: {
         Authorization: localStorage.getItem('token'),
       },
