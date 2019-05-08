@@ -104,7 +104,7 @@ class Testimonial extends Component {
                     onChange={this.handleChange}
                     value={this.state.data.personName}
                   />
-                  <Form.Input
+                  <Form.TextArea
                     fluid
                     required
                     placeholder="Testimonial Content"

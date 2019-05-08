@@ -19,7 +19,7 @@ function* Req(action) {
     let imageName = action.file.name;
     const content = yield axios({
       method: 'post',
-      url: 'http://192.168.10.2:3005/api/testimonial/',
+      url: 'http://192.168.31.26:3005/api/testimonial/',
       headers: {
         // 'Content-Type': 'multipart/form-data',
         Authorization: localStorage.getItem('token'),

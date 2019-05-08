@@ -11,9 +11,9 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { editRequest } from './actions';
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 import makeSelectEditTestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -21,13 +21,34 @@ import messages from './messages';
 import Navbar from '../Navbar/navbar';
 
 class EditTestimonial extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+    };
+  }
   // useInjectReducer({ key: 'editTestimonial', reducer });
   // useInjectSaga({ key: 'editTestimonial', saga });
+  componentDidMount() {
+    this.props.dataRequest();
+  }
+
+  componentWillReceiveProps(data) {
+    if (data.gettestimonial.response) {
+      this.setState(
+        {
+          data,
+        },
+        () => console.log(this.state.data, 'edittest'),
+      );
+    }
+  }
   render() {
     return (
       <div>
         <Navbar />
-        Edit EditTestimonial
+        EditTestimonial
+        <div />
       </div>
     );
   }
@@ -40,11 +61,12 @@ const mapStateToProps = createStructuredSelector({
   editTestimonial: makeSelectEditTestimonial(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+const withReducer = injectReducer({ key: 'gettestimonial', reducer });
+const withSaga = injectSaga({ key: 'gettestimonial', saga });
+
+const mapDispatchToProps = dispatch => ({
+  dataRequest: data => dispatch(editRequest()),
+});
 
 const withConnect = connect(
   mapStateToProps,
@@ -53,5 +75,7 @@ const withConnect = connect(
 
 export default compose(
   withConnect,
+  withReducer,
+  withSaga,
   memo,
 )(EditTestimonial);

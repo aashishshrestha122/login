@@ -3,21 +3,10 @@
  * LoginContainer actions
  *
  */
+//action accessed from actionhelpers in utils
 
-console.log('actions');
-// console.log(data);
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
+import action from '../../utils/action';
+import * as types from './constants';
+console.log("action login");
 
-export const loginRequest = data => ({
-  type: LOGIN_REQUEST,
-  data,
-});
-// console.log(data);
-// export const loginSuccess = events => ({
-//   type: LOGIN_SUCCESS,
-//   events,
-// });
-// export const loginError = error => ({
-//   type: LOGIN_ERROR,
-//   error,
-// });
+export const loginRequest = action (types.LOGIN_REQUEST, 'data')

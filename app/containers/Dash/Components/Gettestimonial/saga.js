@@ -1,13 +1,14 @@
-import { put, takeLatest, all } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
+import { put, takeLatest, all, fork } from 'redux-saga/effects';
 import axios from 'axios';
+import * as types from './constants'
+// import API 
 
 console.log('post sagas');
 function* Req() {
   try {
     const content = yield  axios({
       method: 'get',
-      url: 'http://192.168.10.2:3005/api/testimonial/',
+      url: 'http://192.168.31.26:3005/api/testimonial/',
       headers: {
         Authorization: localStorage.getItem('token'),
       },

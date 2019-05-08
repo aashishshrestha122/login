@@ -47,13 +47,15 @@ class Gettestimonial extends Component {
       // console.log(this.state.data);
       // console.log(data, 'data');
       // console.log(data.gettestimonial.response[0], 'index recieved');
+      // console.log(data.gettestimonial.response[0]._id);
     }
   }
-
-  onEditChange(){
+  
+  onEditChange() {
+    // e.preventDefault();
+    // console.log()
     history.push('/edittestimonials');
   }
-
   render() {
     return (
       <div>
@@ -64,6 +66,7 @@ class Gettestimonial extends Component {
           this.state.data.gettestimonial.response.map((element, index) => (
             <div key={index}>
               <br />
+
               <Card>
                 <ul>
                   <li>
