@@ -17,3 +17,6 @@ import * as types from './constants';
 
 //action accessed from actionhelpers in utils
 export const postRequest = action (types.POST_REQUEST,'data','file')
+export const getDataByIdRequest = action (types.GET_DATA_BY_ID_REQUEST,'id')
+export const getDataByIdSuccess = action (types.GET_DATA_BY_ID_SUCCESS,'id')
+export const getDataByIdFailure = action (types.GET_DATA_BY_ID_FAILURE,'id')

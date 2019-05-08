@@ -15,14 +15,14 @@ function* Req() {
     });
     // console.log(content.data.dataList);
 
-    yield put({ type: 'GET_SUCCESS', json: content });
+    yield put({ type: types.GET_SUCCESS, json: content });
     console.log(json);
   } catch (error) {
     // console.log(error, 'error');
   }
 }
 function* actionWatcher() {
-  yield takeLatest('GET_REQUEST', Req);
+  yield takeLatest(types.GET_REQUESTf, Req);
 }
 
 export default function* rootSaga() {

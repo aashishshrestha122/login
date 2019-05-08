@@ -51,10 +51,13 @@ class Gettestimonial extends Component {
     }
   }
 
-  onEditChange(e) {
+  onEditChange(id) {
+    console.log('>>>',id)
     // e.preventDefault();
-    // console.log()
-    history.push('/edittestimonials');
+    // console.log(e)
+    // data = id;
+    // console.log(data);
+    history.push(`/edit-testimonial/${id}`);
   }
   render() {
     return (
@@ -66,7 +69,7 @@ class Gettestimonial extends Component {
           this.state.data.gettestimonial.response.map((element, index) => (
             <div key={index}>
               <br />
-              <div className = "card">
+              <div className="card">
                 <Card>
                   <ul>
                     <li>
@@ -74,8 +77,8 @@ class Gettestimonial extends Component {
                         color="blue"
                         className="px-4"
                         className="button"
-                        onClick={this.onEditChange}
-                      >
+                        onClick={() =>this.onEditChange(element._id)}
+                        >
                         Edit
                       </Button>
                     </li>
@@ -89,11 +92,11 @@ class Gettestimonial extends Component {
                   <Card.Content
                     meta="Testimonial"
                     description={element.testimonialContent}
-                  />
+                    />
                   <Card.Content
                     meta="Organization"
                     description={element.organization}
-                  />
+                    />
                 </Card>
               </div>
             </div>

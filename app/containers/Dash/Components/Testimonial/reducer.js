@@ -3,10 +3,18 @@
  * Testimonial reducer
  *
  */
-import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
+import {
+  POST_REQUEST,
+  POST_SUCCESS,
+  POST_ERROR,
+  GET_DATA_BY_ID_REQUEST,
+  GET_DATA_BY_ID_SUCCESS,
+  GET_DATA_BY_ID_FAILURE,
+} from './constants';
 
 export const initialState = {
   data: [],
+  testimonialByIdData: {}
 };
 
 const postContainerReducer = (state = initialState, action) => {
@@ -18,10 +26,19 @@ const postContainerReducer = (state = initialState, action) => {
       return { action };
     }
     case POST_ERROR: {
-      return {...state}
+      return { ...state };
+    }
+    case GET_DATA_BY_ID_REQUEST: {
+      return { ...state };
+    }
+    case GET_DATA_BY_ID_SUCCESS: {
+      return {  action };
+    }
+    case GET_DATA_BY_ID_FAILURE: {
+      return { ...state };
     }
     default:
-    return state;
+      return state;
   }
 };
 export default postContainerReducer;

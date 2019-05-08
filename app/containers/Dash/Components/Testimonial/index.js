@@ -15,7 +15,7 @@ import makeSelectTestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { POST_REQUEST, POST_SUCCESS, POST_ERROR } from './constants';
-import { postRequest } from './actions';
+import { postRequest,getDataByIdRequest } from './actions';
 import * as jwt from 'jwt-decode';
 import Navbar from '../Navbar/navbar';
 import history from '../../../../utils/history';
@@ -47,9 +47,27 @@ class Testimonial extends Component {
     };
   }
 
+  componentDidMount() {
+    const id = this.props.match && this.props.match.params.test_id ? this.props.match.params.test_id : '';
+    console.log(this.props);
+    console.log(id,">>>")
+    this.props.dataRequest(id);
+    // this.bindData()
+  }
+
+  // bindData = () => {
+  //   const newData = this.props.testimonial ? this.props.testimonial.Testimonial.action.res.data : ''
+  //   console.log(newData,">>>>>>>>>");
+  //   this.setState({data:{
+  //     newData
+  //   }})
+    
+  // }
+
+
   handleSubmit = e => {
     e.preventDefault();
-    const formdata = new FormData();
+    // const formdata = new FormData();
     const data = {
       personName: this.state.data.personName,
       testimonialContent: this.state.data.testimonialContent,
@@ -80,9 +98,9 @@ class Testimonial extends Component {
   };
 
   render() {
-    // const decoded = jwt(localStorage.getItem('token'));
-    // console.log(this.state);
+    console.log(this.props);
 
+    
     return (
       <div>
         <Navbar />
@@ -108,7 +126,6 @@ class Testimonial extends Component {
                     value={this.state.data.personName}
                   />
                   <Form.TextArea
-                    fluid
                     required
                     placeholder="Testimonial Content"
                     type="text"
@@ -165,12 +182,18 @@ const mapStateToProps = createStructuredSelector({
   testimonial: makeSelectTestimonial(),
 });
 
-const withReducer = injectReducer({ key: 'Testimonial', reducer });
-const withSaga = injectSaga({ key: 'Testimonial', saga });
+// function mapStateToProps(action) {
+//   return {
+//   testimonial: action
+//   }
+// }
 
 const mapDispatchToProps = dispatch => ({
   submit: (data, file) => dispatch(postRequest(data, file)),
+  dataRequest: id => dispatch(getDataByIdRequest(id)),
 });
+const withReducer = injectReducer({ key: 'Testimonial', reducer });
+const withSaga = injectSaga({ key: 'Testimonial', saga });
 
 const withConnect = connect(
   mapStateToProps,

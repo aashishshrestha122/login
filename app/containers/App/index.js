@@ -52,16 +52,21 @@ export default function App() {
         />
         <Route
           path="/testimonial"
-          render={() => (token ? <Testimonial /> : <Redirect to="/" />)}
-        />
+          render={(props) => (token ? <Testimonial {...props} /> : <Redirect to="/" />)}
+        />/
         <Route
           path="/listtestimonials"
-          render={() => (token ? <Gettestimonial /> : <Redirect to="/" />)}
+          render={(props) => (token ? <Gettestimonial {...props} /> : <Redirect to="/" />)}
         />
         <Route
-          path="/edittestimonials"
-          render={() => (token ? <EditTestimonial /> : <Redirect to="/" />)}
+          path="/edit-testimonial/:test_id"
+          render={(props) => (token ? <Testimonial {...props} /> : <Redirect to="/" />)}
         />
+
+        {/* <Route
+          path="/edittestimonials/:id"
+          render={(props) => (token ? <EditTestimonial {...props} /> : <Redirect to="/" />)}
+        /> */}
         <Route path="/" component={LoginContainer} />
         <Route path="" component={NotFoundPage} />
       </Switch>

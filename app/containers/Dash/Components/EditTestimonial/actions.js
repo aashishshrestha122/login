@@ -14,4 +14,4 @@ console.log('edit actions');
 import action from '../../../../utils/action';
 import * as types from './constants';
 
-export const editRequest = action(types.EDIT_REQUEST)
+export const editRequest = action(types.EDIT_REQUEST, 'id')

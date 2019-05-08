@@ -1,8 +1,8 @@
 import { put, takeLatest, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import axios from 'axios';
+import * as types from './constants';
 
-console.log('post sagas');
 function* Req(action) {
   try {
     console.log(action.file);
@@ -16,7 +16,7 @@ function* Req(action) {
     // for (var key of form_Data.entries()) {
     //   console.log(key[0] + ', ' + key[1]);
     // }
-    let imageName = action.file.name;
+    // let imageName = action.file.name;
     const content = yield axios({
       method: 'post',
       url: 'http://192.168.31.26:3005/api/testimonial/',
@@ -28,18 +28,35 @@ function* Req(action) {
       data: form_Data,
     });
 
-    yield put({ type: 'POST_SUCCESS', json: content });
-    console.log(json);
+    yield put({ type: types.POST_SUCCESS, json: content });
   } catch (error) {
     console.log(error, 'error');
     // alert('Failed To Post Testimonial');
   }
 }
 
-function* actionWatcher() {
-  yield takeLatest('POST_REQUEST', Req);
+function* getDataByIdRequest(action) {
+  console.log("hehreh",action.id)
+  try {
+    const id = action.id;
+    const response = yield axios({
+      method: 'get',
+      url: `http://192.168.31.26:3005/api/testimonial/${id}`,
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    });
+    yield put({ type: types.GET_DATA_BY_ID_SUCCESS, res: response });
+  } catch (error) {
+    console.log('error');
+  }
 }
 
-export default function* rootSaga() {
-  yield all([actionWatcher()]);
+export default function* actionWatcher() {
+  yield takeLatest(types.GET_DATA_BY_ID_REQUEST, getDataByIdRequest);
+  yield takeLatest(types.POST_REQUEST, Req);
 }
+
+// export default function* rootSaga() {
+//   yield all([actionWatcher()]);
+// }

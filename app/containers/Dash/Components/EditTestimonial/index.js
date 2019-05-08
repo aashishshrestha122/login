@@ -30,9 +30,10 @@ class EditTestimonial extends Component {
   // useInjectReducer({ key: 'editTestimonial', reducer });
   // useInjectSaga({ key: 'editTestimonial', saga });
   componentDidMount() {
-    this.props.dataRequest();
+    const id = this.props.match.params.id;
+    // console.log(id);
+    this.props.dataRequest(id);
   }
-
   componentWillReceiveProps(data) {
     if (data.gettestimonial.response) {
       this.setState(
@@ -44,6 +45,7 @@ class EditTestimonial extends Component {
     }
   }
   render() {
+    console.log('changeeeeeeee');
     return (
       <div>
         <Navbar />
@@ -61,12 +63,13 @@ const mapStateToProps = createStructuredSelector({
   editTestimonial: makeSelectEditTestimonial(),
 });
 
+const mapDispatchToProps = dispatch => ({
+  dataRequest: id => dispatch(editRequest(id)),
+});
+
 const withReducer = injectReducer({ key: 'gettestimonial', reducer });
 const withSaga = injectSaga({ key: 'gettestimonial', saga });
 
-const mapDispatchToProps = dispatch => ({
-  dataRequest: data => dispatch(editRequest()),
-});
 
 const withConnect = connect(
   mapStateToProps,

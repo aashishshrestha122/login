@@ -2,9 +2,11 @@ import { put, takeLatest, all } from 'redux-saga/effects';
 import axios from 'axios';
 
 console.log('edit sagas');
-function* edit() {
+function* edit(action) {
   try {
-    const content = yield  axios({
+    const id = action.id;
+    console.log(id, 'saga ID');
+    const content = yield axios({
       method: 'get',
       url: 'http://192.168.31.26:3005/api/testimonial/',
       headers: {
