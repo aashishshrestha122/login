@@ -4,9 +4,9 @@
  *
  */
 import produce from 'immer';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
+import * as types from './constants';
 import * as jwt from "jwt-decode";
-console.log('REDUCERS');
+// console.log('REDUCERS');
 
 export const initialState = {
   events: [],
@@ -17,12 +17,12 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign */
 const loginContainerReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_REQUEST: {
+    case types.LOGIN_REQUEST: {
       // console.log(action.data);
       return { ...state, loading: true };
     }
 
-    case LOGIN_SUCCESS:
+    case types.LOGIN_SUCCESS:
       // console.log(action.json.data);
       localStorage.setItem('token', action.json.data.token);
       const decoded = jwt(localStorage.getItem("token"));
@@ -31,7 +31,7 @@ const loginContainerReducer = (state = initialState, action) => {
       // console.log(localStorage);
       return { action, loading: false, error: false };
 
-    case LOGIN_ERROR:{
+    case types.LOGIN_ERROR:{
       // console.log("error");
       return { ...state, loading: false, error: true};
     }

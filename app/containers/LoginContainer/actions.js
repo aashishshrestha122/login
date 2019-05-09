@@ -7,6 +7,6 @@
 
 import action from '../../utils/action';
 import * as types from './constants';
-console.log("action login");
+// console.log("action login");
 
 export const loginRequest = action (types.LOGIN_REQUEST, 'data')

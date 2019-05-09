@@ -13,7 +13,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectGettestimonial from './selectors';
+import {makeSelectGettestimonial,makeSelectDeleteTestimonial} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { getRequest, deleteRequest } from './actions';
@@ -42,10 +42,18 @@ class Gettestimonial extends Component {
   }
 
   componentWillReceiveProps(data) {
-    if (data.gettestimonial.response) {
+    console.log("dsfdf0",data)
+    if (data.gettestimonial && data.gettestimonial.length > 0) {
       this.setState({
-        data,
+        testimonialList: data.gettestimonial
       });
+    }
+    if (data.deletetestimonial && data.deletetestimonial.json.data.message) {
+      this.setState({
+        deleteResponse: data.deletetestimonial.json.data.message
+      },()=>{
+        this.props.dataRequest();
+      })
     }
   }
 
@@ -64,13 +72,14 @@ class Gettestimonial extends Component {
   }
 
   render() {
+    console.log(">>>>>>>",this.state)
     return (
       <div>
         <Navbar />
         <div>List Testimonials</div>
-
-        {this.state.data &&
-          this.state.data.gettestimonial.response.map((element, index) => (
+{this.state.deleteResponse && this.state.deleteResponse}
+        {this.state.testimonialList && this.state.testimonialList.length > 0 && 
+          this.state.testimonialList.map((element, index) => (
             <div key={index}>
               <br />
               <div className="card">
@@ -124,10 +133,11 @@ const withSaga = injectSaga({ key: 'gettestimonial', saga });
 
 const mapStateToProps = createStructuredSelector({
   gettestimonial: makeSelectGettestimonial(),
+  deletetestimonial: makeSelectDeleteTestimonial()
 });
 
 const mapDispatchToProps = dispatch => ({
-  dataRequest: data => dispatch(getRequest()),
+  dataRequest: () => dispatch(getRequest()),
   deleteRequest: id => dispatch(deleteRequest(id)),
 });
 

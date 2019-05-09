@@ -1,14 +1,14 @@
 import { put, takeLatest, all } from 'redux-saga/effects';
 import axios from 'axios';
-import * as types from './constants'
-// import API 
+import * as types from './constants';
+// import API
 
 // console.log('post sagas');
 function* Req() {
   try {
-    const content = yield  axios({
+    const content = yield axios({
       method: 'get',
-      url: 'http://192.168.31.24:3005/api/testimonial/',
+      url: 'http://192.168.10.18:3005/api/testimonial/',
       headers: {
         Authorization: localStorage.getItem('token'),
       },
@@ -25,18 +25,20 @@ function* Req() {
 function* Del(action) {
   // console.log(action.id)
   try {
-    const id = action.id
+    const id = action.id;
     // console.log(id);
-    const content = yield  axios({
+    const content = yield axios({
       method: 'patch',
-      url: `http://192.168.31.24:3005/api/testimonial/${id}`,
+      url: `http://192.168.10.18:3005/api/testimonial/${id}`,
       headers: {
+        
         Authorization: localStorage.getItem('token'),
       },
     });
     // console.log(content.data.dataList);
 
     yield put({ type: types.DEL_SUCCESS, json: content });
+    // yield put(push('/dash'));
     console.log(json);
   } catch (error) {
     // console.log(error, 'error');

@@ -18,7 +18,7 @@ function* Req(action) {
     // let imageName = action.file.name;
     const content = yield axios({
       method: 'post',
-      url: 'http://192.168.31.24:3005/api/testimonial/',
+      url: 'http://192.168.10.18:3005/api/testimonial/',
       headers: {
         // 'Content-Type': 'multipart/form-data',
         Authorization: localStorage.getItem('token'),
@@ -40,7 +40,7 @@ function* getDataByIdRequest(action) {
     const id = action.id;
     const response = yield axios({
       method: 'get',
-      url: `http://192.168.31.24:3005/api/testimonial/${id}`,
+      url: `http://192.168.10.18:3005/api/testimonial/${id}`,
       headers: {
         Authorization: localStorage.getItem('token'),
       },
@@ -66,7 +66,7 @@ function* putReq(action) {
 
     const content = yield axios({
       method: 'put',
-      url: `http://192.168.31.24:3005/api/testimonial/${id}`,
+      url: `http://192.168.10.18:3005/api/testimonial/${id}`,
       headers: {
         // 'Content-Type': 'multipart/form-data',
         Authorization: localStorage.getItem('token'),

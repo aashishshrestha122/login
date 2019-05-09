@@ -19,8 +19,13 @@ const selectGettestimonialDomain = state =>
 const makeSelectGettestimonial = () =>
   createSelector(
     selectGettestimonialDomain,
-    substate => substate,
+    substate => substate.dataList,
   );
 
-export default makeSelectGettestimonial;
-export { selectGettestimonialDomain };
+  const makeSelectDeleteTestimonial = () =>
+  createSelector(
+    selectGettestimonialDomain,
+    substate => substate.deleteResponse,
+  );
+
+export { makeSelectGettestimonial,makeSelectDeleteTestimonial };

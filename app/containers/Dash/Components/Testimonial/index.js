@@ -48,7 +48,7 @@ class Testimonial extends Component {
     // console.log(id, '>>>');
     // console.log("didmount");
     if (id) this.props.dataRequest(id);
-    console.log(id);
+    // console.log(id);
   }
 
   componentWillReceiveProps(data) {
