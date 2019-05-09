@@ -16,7 +16,7 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectGettestimonial from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { getRequest } from './actions';
+import { getRequest, deleteRequest } from './actions';
 import { Card, Button } from 'semantic-ui-react';
 import Navbar from '../Navbar/navbar';
 import './index.css';
@@ -34,31 +34,35 @@ class Gettestimonial extends Component {
   }
   componentDidMount() {
     this.props.dataRequest();
+    const id =
+      this.props.match && this.props.match.params.test_id
+        ? this.props.match.params.test_id
+        : null;
+    if (id) this.props.deleteRequest(id);
   }
 
   componentWillReceiveProps(data) {
     if (data.gettestimonial.response) {
-      this.setState(
-        {
-          data,
-        },
-        // () => console.log(this.state.data ),
-      );
-      // console.log(this.state.data);
-      console.log(data, 'data');
-      // console.log(data.gettestimonial.response[0], 'index recieved');
-      // console.log(data.gettestimonial.response[0]._id);
+      this.setState({
+        data,
+      });
     }
   }
 
   onEditChange(id) {
-    console.log('>>>',id)
+    // console.log('>>>', id);
     // e.preventDefault();
     // console.log(e)
     // data = id;
     // console.log(data);
     history.push(`/edit-testimonial/${id}`);
   }
+
+  onDelete(id) {
+    // history.push(`/delete-testimonial/${id}`)
+    this.props.deleteRequest(id);
+  }
+
   render() {
     return (
       <div>
@@ -77,13 +81,18 @@ class Gettestimonial extends Component {
                         color="blue"
                         className="px-4"
                         className="button"
-                        onClick={() =>this.onEditChange(element._id)}
-                        >
+                        onClick={() => this.onEditChange(element._id)}
+                      >
                         Edit
                       </Button>
                     </li>
                     <li>
-                      <Button color="red" className="px-4">
+                      <Button
+                        color="red"
+                        className="px-4"
+                        className="button"
+                        onClick={() => this.onDelete(element._id)}
+                      >
                         Delete
                       </Button>
                     </li>
@@ -92,11 +101,11 @@ class Gettestimonial extends Component {
                   <Card.Content
                     meta="Testimonial"
                     description={element.testimonialContent}
-                    />
+                  />
                   <Card.Content
                     meta="Organization"
                     description={element.organization}
-                    />
+                  />
                 </Card>
               </div>
             </div>
@@ -119,6 +128,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   dataRequest: data => dispatch(getRequest()),
+  deleteRequest: id => dispatch(deleteRequest(id)),
 });
 
 const withConnect = connect(

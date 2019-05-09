@@ -8,7 +8,7 @@ function* loginAuth(action) {
  try { 
    const auth = yield axios({
     method: 'post',
-    url: 'http://localhost:3005/api/login',
+    url: 'http://192.168.31.24:3005/api/login',
     data: {
       username: action.data.username,
       password: action.data.password,

@@ -7,7 +7,7 @@
  import action from '../../../../utils/action';
  import * as types from './constants';
 
-console.log('get actions');
+// console.log('get actions');
 // console.log(data);
 
 // export const getRequest = () => ({
@@ -15,3 +15,4 @@ console.log('get actions');
 // });
 //action accessed from actionhelpers in utils
  export const getRequest = action(types.GET_REQUEST)
+ export const deleteRequest = action(types.DEL_REQUEST,'id')

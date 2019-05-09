@@ -4,7 +4,7 @@
  *
  */
 
-console.log('post actions');
+// console.log('post actions');
 // console.log(data);
 import action from '../../../../utils/action';
 import * as types from './constants';

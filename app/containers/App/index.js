@@ -20,9 +20,7 @@ import LoginContainer from 'containers/LoginContainer/Loadable';
 import Dash from 'containers/Dash/';
 import Testimonial from 'containers/Dash/Components/Testimonial';
 import Gettestimonial from 'containers/Dash/Components/Gettestimonial';
-import EditTestimonial from 'containers/Dash/Components/EditTestimonial';
 import GlobalStyle from '../../global-styles';
-
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -52,21 +50,30 @@ export default function App() {
         />
         <Route
           path="/testimonial"
-          render={(props) => (token ? <Testimonial {...props} /> : <Redirect to="/" />)}
-        />/
+          render={props =>
+            token ? <Testimonial {...props} /> : <Redirect to="/" />
+          }
+        />
+        /
         <Route
           path="/listtestimonials"
-          render={(props) => (token ? <Gettestimonial {...props} /> : <Redirect to="/" />)}
+          render={props =>
+            token ? <Gettestimonial {...props} /> : <Redirect to="/" />
+          }
         />
         <Route
           path="/edit-testimonial/:test_id"
-          render={(props) => (token ? <Testimonial {...props} /> : <Redirect to="/" />)}
+          render={props =>
+            token ? <Testimonial {...props} /> : <Redirect to="/" />
+          }
+        />{' '}
+        <Route
+          path="/delete-testimonial/:test_id"
+          render={props =>
+            token ? <Testimonial {...props} /> : <Redirect to="/" />
+          }
         />
-
-        {/* <Route
-          path="/edittestimonials/:id"
-          render={(props) => (token ? <EditTestimonial {...props} /> : <Redirect to="/" />)}
-        /> */}
+        
         <Route path="/" component={LoginContainer} />
         <Route path="" component={NotFoundPage} />
       </Switch>

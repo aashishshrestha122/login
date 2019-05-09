@@ -6,4 +6,4 @@ export const GET_DATA_BY_ID_SUCCESS = 'GET_DATA_BY_ID_SUCCESS';
 export const GET_DATA_BY_ID_FAILURE = 'GET_DATA_BY_ID_FAILURE';
 export const PUT_REQUEST = 'PUT_REQUEST';
 export const PUT_SUCCESS = 'PUT_SUCCESS';
-export const PUT_FAILURE = 'PUT_FAILURE';
+export const PUT_ERROR = 'PUT_ERROR';

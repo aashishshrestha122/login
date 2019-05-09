@@ -33,7 +33,7 @@ class Testimonial extends Component {
         personName: '',
         testimonialContent: '',
         organization: '',
-        message: '',
+        // message: '',
       },
       file: null,
     };
@@ -45,15 +45,15 @@ class Testimonial extends Component {
         ? this.props.match.params.test_id
         : null;
     // console.log(this.props);
-    console.log(id, '>>>');
+    // console.log(id, '>>>');
     // console.log("didmount");
     if (id) this.props.dataRequest(id);
-    // this.bindData()
+    console.log(id);
   }
 
   componentWillReceiveProps(data) {
-    console.log(data);
-    console.log('editindex');
+    // console.log(data);
+    // console.log('editindex');
     // console.log(response);
     this.setState({
       data: {
@@ -61,19 +61,7 @@ class Testimonial extends Component {
         ...data.Testimonial.testimonialByIdData,
       },
     });
-    //     () => console.log(this.state.data),
-    //   );
-    //   // console.log(response, "response");
   }
-
-  // bindData = () => {
-  //   const newData = this.props.testimonial ? this.props.testimonial.Testimonial.action.res.data : ''
-  //   console.log(newData,">>>>>>>>>");
-  //   this.setState({data:{
-  //     newData
-  //   }})
-
-  // }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -82,7 +70,7 @@ class Testimonial extends Component {
       personName: this.state.data.personName,
       testimonialContent: this.state.data.testimonialContent,
       organization: this.state.data.organization,
-      message: this.state.data.message,
+      // message: this.state.data.message,
     };
     const id =
       this.props.match && this.props.match.params.test_id
@@ -155,14 +143,14 @@ class Testimonial extends Component {
                     onChange={this.handleChange}
                     value={this.state.data.organization}
                   />
-                  <Form.Input
+                  {/* <Form.Input
                     fluid
                     placeholder="Message"
                     type="text"
                     name="message"
                     onChange={this.handleChange}
                     value={this.state.data.message}
-                  />
+                  /> */}
                   <Form.Input
                     fluid
                     placeholder="file"
